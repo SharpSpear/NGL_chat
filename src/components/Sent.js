@@ -1,17 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LeftArrow from "../assets/left.png";
 import CheckImage from "../assets/sent.png";
 import Logo from "../assets/logo.png";
 
 const Sent = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="container">
         <div className="navbar">
-          <Link className="back" to="javascript:history.back()">
+          <div className="back" onClick={() => navigate(-1)}>
             <img src={LeftArrow} alt="back" width="24" height="24" />
-          </Link>
+          </div>
         </div>
         <div className="check">
           <img src={CheckImage} alt="sent" data-xblocker="passed" />
