@@ -9,9 +9,10 @@ function App() {
   return (
     <Routes>
       <Route path="/:name" element={<Message />} />
-      <Route path="/p/sent" element={<Sent />} />
-      <Route path="/p/terms" element={<Terms />} />
-      <Route path="/p/privacy" element={<Privacy />} />
+      <Route path="/:name/:number" element={<Message />} />
+      <Route exact path="/p/sent" element={<Sent />} />
+      <Route exact path="/p/terms" element={<Terms />} />
+      <Route exact path="/p/privacy" element={<Privacy />} />
     </Routes>
   );
 }

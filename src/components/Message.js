@@ -1,25 +1,41 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { collection, getDocs, set, ref } from "firebase/firestore";
+import { collection, getDocs, addDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 const Message = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const ref = useRef();
   const [text, setText] = useState();
   const [focus, setFocus] = useState(false);
   const [photo, setPhoto] = useState();
 
-  // const sendResponse = (data) => {
-  //   set
-  // }
+  const sendResponse = async (data) => {
+    await setDoc(
+      doc(db, "responses", params.name, data.questionEpoch, data.epoch),
+      {
+        response: data.response,
+        questionEpoch: data.questionEpoch,
+        epoch: data.epoch,
+        ipaddresslocation: "",
+      }
+    );
+  };
 
-  const Submit = (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
-    const time = new Date().getTime();
+    const time = (new Date().getTime() / 1000).toFixed(0);
     console.log("time", time);
+    if (params.number) {
+      const data = {
+        response: text,
+        epoch: time,
+        questionEpoch: params.number,
+      };
+      await sendResponse(data);
+    }
+
     // set(ref(db, "responses/"));
     navigate("/p/sent");
   };
@@ -48,9 +64,17 @@ const Message = () => {
 
       try {
         const response = await fetch(
-          `https://www.instagram.com/${params.name}/?__a=1&__d=1`
+          `https://www.instagram.com/${params.name}/?__a=1&__d=1`,
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Credentials": true,
+              "Access-Control-Allow-Methods": "GET",
+            },
+          }
         ); // fetch page
         const htmlString = await response.text(); // get response text
+        console.log("string", htmlString);
         // getting the url
         let json = JSON.parse(htmlString);
         var photoURL = json["graphql"]["user"]["profile_pic_url_hd"];
