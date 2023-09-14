@@ -12,7 +12,7 @@ const Message = () => {
   const [focus, setFocus] = useState(false);
   const [photo, setPhoto] = useState();
   const [question, setQuestion] = useState();
-  const [location, setLocation] = useState();
+  const [location, setLocation] = useState("");
 
   const sendResponse = async (data) => {
     await setDoc(
