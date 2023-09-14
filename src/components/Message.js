@@ -1,13 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, set, ref } from "firebase/firestore";
 import { db } from "../firebase";
 
 const Message = () => {
@@ -19,8 +12,15 @@ const Message = () => {
   const [focus, setFocus] = useState(false);
   const [photo, setPhoto] = useState();
 
+  // const sendResponse = (data) => {
+  //   set
+  // }
+
   const Submit = (e) => {
     e.preventDefault();
+    const time = new Date().getTime();
+    console.log("time", time);
+    // set(ref(db, "responses/"));
     navigate("/p/sent");
   };
 
@@ -97,7 +97,9 @@ const Message = () => {
                   />
                 </div>
               </div>
-              <div className="anonymous-tooltip">🔒 anonymous q&a</div>
+              <div className="anonymous-tooltip">
+                Your response is fully anonymous 🔒
+              </div>
               {text && (
                 <button className="submit" type="submit" onClick={Submit}>
                   Send!
@@ -116,7 +118,7 @@ const Message = () => {
                 to="https://apps.apple.com/us/app/ngl-anonymous-q-a/id1596550932?ppid=543cb167-5bdc-448f-a202-e5506f5d2837"
                 target="_blank"
               >
-                Get your own messages!
+                Get your own responses!
               </Link>
               <div className="tos-privacy">
                 <Link className="tos" to="/p/terms">
