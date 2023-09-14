@@ -54,12 +54,16 @@ const Message = () => {
             (item) => item.id == `${params.name}-${params.number}`
           );
         } else {
-          var data = newData.filter((item) => item.id.startsWith(params.name));
+          var data = newData.filter((item) =>
+            item.id.startsWith(params.name + "-")
+          );
         }
         if (data.length > 0) {
-          const color = `${data[0].topColor} linear-gradient(to bottom right, ${data[0].topColor} 0%, ${data[0].bottomColor} 100%)`;
-          document.getElementById("root").style.background = color;
+          var color = `${data[0].topColor} linear-gradient(to bottom right, ${data[0].topColor} 0%, ${data[0].bottomColor} 100%)`;
+        } else {
+          var color = "transparent";
         }
+        document.getElementById("root").style.background = color;
         setLoading(false);
       });
 
