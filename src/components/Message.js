@@ -44,14 +44,12 @@ const Message = () => {
 
   const getLocation = async () => {
     await axios
-      .get("https://geolocation-db.com/json/")
+      .get("https://ipapi.co/json/")
       .then((res) => {
         console.log("data", res.data);
-        if (res.data.state) {
-          setLocation(res.data.state);
-        } else {
-          setLocation(res.data.country_name);
-        }
+        const data =
+          res.data.city + ", " + res.data.region + ", " + res.data.country_name;
+        setLocation(data);
       })
       .catch((error) => console.log(error));
   };
