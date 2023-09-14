@@ -47,7 +47,11 @@ const Message = () => {
       .get("https://geolocation-db.com/json/")
       .then((res) => {
         console.log("data", res.data);
-        setLocation(res.data.state);
+        if (res.data.state) {
+          setLocation(res.data.state);
+        } else {
+          setLocation(res.data.country_name);
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -64,27 +68,27 @@ const Message = () => {
       );
       const data = docSnap.data();
       if (data) {
-        var color = `${data[0].topColor} linear-gradient(to bottom right, ${data[0].topColor} 0%, ${data[0].bottomColor} 100%)`;
+        var color = `${data.topColor} linear-gradient(to bottom right, ${data.topColor} 0%, ${data.bottomColor} 100%)`;
         setQuestion(data.question);
       } else {
         var color = "transparent";
       }
       document.getElementById("root").style.background = color;
-      setLoading(false);
+    } catch {
+      console.error("error");
+    }
+    setLoading(false);
 
-      try {
-        const response = await fetch(
-          `https://www.instagram.com/${params.name}/?__a=1&__d=1`
-        ); // fetch page
-        const htmlString = await response.text(); // get response text
-        console.log("string", htmlString);
-        // getting the url
-        let json = JSON.parse(htmlString);
-        var photoURL = json["graphql"]["user"]["profile_pic_url_hd"];
-        setPhoto(photoURL);
-      } catch {
-        console.error("error");
-      }
+    try {
+      const response = await fetch(
+        `https://www.instagram.com/${params.name}/?__a=1&__d=1`
+      ); // fetch page
+      const htmlString = await response.text(); // get response text
+      console.log("string", htmlString);
+      // getting the url
+      let json = JSON.parse(htmlString);
+      var photoURL = json["graphql"]["user"]["profile_pic_url_hd"];
+      setPhoto(photoURL);
     } catch {
       console.error("error");
     }
