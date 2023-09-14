@@ -18,7 +18,7 @@ const Message = () => {
         response: data.response,
         questionEpoch: data.questionEpoch,
         epoch: data.epoch,
-        ipaddresslocation: "",
+        ipAddressLocation: data.ipAddressLocation,
       }
     );
   };
@@ -32,6 +32,7 @@ const Message = () => {
         response: text,
         epoch: time,
         questionEpoch: params.number,
+        ipAddressLocation: "Los Angeles",
       };
       await sendResponse(data);
     }
@@ -66,10 +67,12 @@ const Message = () => {
         const response = await fetch(
           `https://www.instagram.com/${params.name}/?__a=1&__d=1`,
           {
+            mode: "cors",
+            credentials: "include",
             headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Credentials": true,
-              "Access-Control-Allow-Methods": "GET",
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Origin: "http://localhost:3000",
             },
           }
         ); // fetch page
