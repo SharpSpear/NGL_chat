@@ -91,7 +91,7 @@ const Message = () => {
           "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
         await postQuestion(qData);
       }
-      document.getElementById("root").style.background = color;
+      document.documentElement.style.background = color;
     } catch {
       console.error("error");
     }
