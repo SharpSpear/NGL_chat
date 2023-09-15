@@ -10,7 +10,9 @@ const Message = () => {
   const navigate = useNavigate();
   const [text, setText] = useState();
   const [focus, setFocus] = useState(false);
-  const [photo, setPhoto] = useState();
+  const [photo, setPhoto] = useState(
+    `https://firebasestorage.googleapis.com/v0/b/honest-c986c.appspot.com/o/profilePictures%2FprofPic-${params.name}.jpg?alt=media`
+  );
   const [location, setLocation] = useState("");
   const [qData, setQData] = useState({
     active: true,
@@ -114,6 +116,10 @@ const Message = () => {
     fetchData();
   }, []);
 
+  const handleOnError = () => {
+    setPhoto("");
+  };
+
   return (
     <>
       {!loading && (
@@ -123,7 +129,9 @@ const Message = () => {
               <div className="bubble">
                 <div className="header">
                   <div className="pfp-container">
-                    {photo && <img src={photo} alt="profile" />}
+                    {photo && (
+                      <img src={photo} alt="" onError={handleOnError} />
+                    )}
                   </div>
                   <div className="user-container">
                     <div className="username">@{params.name}</div>
