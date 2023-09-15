@@ -46,6 +46,9 @@
 
         .user-container {
           font-size: 14px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
 
           .username {
             font-weight: 500;
@@ -53,6 +56,7 @@
 
           .prompt {
             font-weight: bold;
+            font-size: 17px;
           }
         }
       }
