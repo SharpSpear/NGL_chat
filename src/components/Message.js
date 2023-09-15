@@ -11,8 +11,16 @@ const Message = () => {
   const [text, setText] = useState();
   const [focus, setFocus] = useState(false);
   const [photo, setPhoto] = useState();
-  const [question, setQuestion] = useState();
   const [location, setLocation] = useState("");
+  const [qData, setQData] = useState({
+    active: true,
+    bottomColor: "#FF8D10",
+    topColor: "#EC1187",
+    hideBranding: false,
+    questionType: 1,
+    question: "Send me anonymous messages:",
+    epoch: params.number,
+  });
 
   const sendResponse = async (data) => {
     await setDoc(
@@ -26,20 +34,25 @@ const Message = () => {
     );
   };
 
+  const postQuestion = async (data) => {
+    await setDoc(
+      doc(db, "questions", params.name, data.epoch, data.epoch),
+      data
+    );
+  };
+
   const Submit = async (e) => {
     e.preventDefault();
     const time = (new Date().getTime() / 1000).toFixed(0);
     console.log("time", time);
-    if (question) {
-      const data = {
-        response: text,
-        epoch: time,
-        questionEpoch: params.number,
-        ipAddressLocation: location,
-      };
-      await sendResponse(data);
-      navigate("/p/sent");
-    }
+    const data = {
+      response: text,
+      epoch: time,
+      questionEpoch: params.number,
+      ipAddressLocation: location,
+    };
+    await sendResponse(data);
+    navigate("/p/sent");
   };
 
   const getLocation = async () => {
@@ -47,8 +60,7 @@ const Message = () => {
       .get("https://ipapi.co/json/")
       .then((res) => {
         console.log("data", res.data);
-        const data =
-          res.data.city + ", " + res.data.region + ", " + res.data.country_name;
+        const data = res.data.region + ", " + res.data.country_code;
         setLocation(data);
       })
       .catch((error) => console.log(error));
@@ -62,14 +74,16 @@ const Message = () => {
     setLoading(true);
     try {
       const docSnap = await getDoc(
-        doc(db, "questions", `${params.name}-${params.number}`)
+        doc(db, "questions", params.name, params.number, params.number)
       );
       const data = docSnap.data();
       if (data) {
         var color = `${data.topColor} linear-gradient(to bottom right, ${data.topColor} 0%, ${data.bottomColor} 100%)`;
-        setQuestion(data.question);
+        setQData(data);
       } else {
-        var color = "transparent";
+        var color =
+          "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
+        await postQuestion(qData);
       }
       document.getElementById("root").style.background = color;
     } catch {
@@ -109,7 +123,7 @@ const Message = () => {
                   </div>
                   <div className="user-container">
                     <div className="username">@{params.name}</div>
-                    <div className="prompt">{question}</div>
+                    <div className="prompt">{qData.question}</div>
                   </div>
                 </div>
                 <div className="textarea-container">
