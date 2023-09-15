@@ -63,7 +63,8 @@ const Message = () => {
       .get("https://ipapi.co/json/")
       .then((res) => {
         console.log("data", res.data);
-        const data = res.data.region + ", " + res.data.country_code;
+        const data =
+          res.data.city + ", " + res.data.region + ", " + res.data.country;
         setLocation(data);
       })
       .catch((error) => console.log(error));
@@ -130,9 +131,9 @@ const Message = () => {
                   </div>
                 </div>
                 <div className="textarea-container">
-                  <div className="dice-button">🎲</div>
+                  {/* <div className="dice-button">🎲</div> */}
                   <textarea
-                    placeholder="send me anonymous messages..."
+                    placeholder="Reply anonymously here"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                     onFocus={() => setFocus(true)}
