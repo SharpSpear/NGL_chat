@@ -43,15 +43,18 @@ const Message = () => {
 
   const Submit = async (e) => {
     e.preventDefault();
-    const time = (new Date().getTime() / 1000).toFixed(0);
-    console.log("time", time);
-    const data = {
-      response: text,
-      epoch: time,
-      questionEpoch: params.number,
-      ipAddressLocation: location,
-    };
-    await sendResponse(data);
+    if (params.number) {
+      const time = (new Date().getTime() / 1000).toFixed(0);
+      console.log("time", time);
+      const data = {
+        response: text,
+        epoch: time,
+        questionEpoch: params.number,
+        ipAddressLocation: location,
+      };
+      await sendResponse(data);
+    }
+
     navigate("/p/sent");
   };
 
