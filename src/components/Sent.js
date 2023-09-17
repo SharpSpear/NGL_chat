@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LeftArrow from "../assets/left.png";
 import CheckImage from "../assets/sent.png";
@@ -6,10 +6,6 @@ import Logo from "../assets/logo.png";
 
 const Sent = () => {
   const navigate = useNavigate();
-  useEffect(() => {
-    document.documentElement.style.background =
-      "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
-  }, []);
   return (
     <>
       <div className="container">

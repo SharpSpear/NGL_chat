@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { collection, getDoc, doc, setDoc } from "firebase/firestore";
+import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import axios from "axios";
 
@@ -72,10 +72,6 @@ const Message = () => {
       .catch((error) => console.log(error));
   };
 
-  useEffect(() => {
-    getLocation();
-  }, []);
-
   const fetchData = async () => {
     setLoading(true);
     try {
@@ -85,18 +81,15 @@ const Message = () => {
       const data = docSnap.data();
       if (data) {
         var color = `${data.topColor} linear-gradient(to bottom right, ${data.topColor} 0%, ${data.bottomColor} 100%)`;
+        document.documentElement.style.background = color;
         setQData(data);
       } else {
-        var color =
-          "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
         await postQuestion(qData);
       }
     } catch {
       console.error("error");
-      var color =
-        "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
     }
-    document.documentElement.style.background = color;
+
     setLoading(false);
     try {
       const response = await fetch(
@@ -113,9 +106,12 @@ const Message = () => {
     }
   };
 
+  /*eslint-disable*/
   useEffect(() => {
     fetchData();
+    getLocation();
   }, []);
+  /*eslint-enable*/
 
   const handleOnError = () => {
     setPhoto("");
