@@ -74,14 +74,15 @@ const Message = () => {
 
   const fetchData = async () => {
     setLoading(true);
+    var color =
+      "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
     try {
       const docSnap = await getDoc(
         doc(db, "questions", params.name, params.number, params.number)
       );
       const data = docSnap.data();
       if (data) {
-        var color = `${data.topColor} linear-gradient(to bottom right, ${data.topColor} 0%, ${data.bottomColor} 100%)`;
-        document.documentElement.style.background = color;
+        color = `${data.topColor} linear-gradient(to bottom right, ${data.topColor} 0%, ${data.bottomColor} 100%)`;
         setQData(data);
       } else {
         await postQuestion(qData);
@@ -89,7 +90,7 @@ const Message = () => {
     } catch {
       console.error("error");
     }
-
+    document.documentElement.style.background = color;
     setLoading(false);
     try {
       const response = await fetch(
