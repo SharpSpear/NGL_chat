@@ -96,7 +96,6 @@ const Message = () => {
     }
     document.documentElement.style.background = color;
     setLoading(false);
-
     try {
       const response = await fetch(
         `https://www.instagram.com/${params.name}/?__a=1&__d=1`
