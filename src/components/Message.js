@@ -87,6 +87,8 @@ const Message = () => {
         var color = `${data.topColor} linear-gradient(to bottom right, ${data.topColor} 0%, ${data.bottomColor} 100%)`;
         setQData(data);
       } else {
+        var color =
+          "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
         await postQuestion(qData);
       }
     } catch {
