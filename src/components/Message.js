@@ -171,7 +171,7 @@ const Message = () => {
               </div> */}
               <Link
                 className="button download-link pulse"
-                to="https://apps.apple.com/us/app/ngl-anonymous-q-a/id1596550932?ppid=543cb167-5bdc-448f-a202-e5506f5d2837"
+                // to="https://apps.apple.com/us/app/ngl-anonymous-q-a/id1596550932?ppid=543cb167-5bdc-448f-a202-e5506f5d2837"
                 target="_blank"
               >
                 Get your own responses!
