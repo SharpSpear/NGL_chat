@@ -80,9 +80,9 @@ const Message = () => {
       );
       const data = docSnap.data();
       if (data) {
+        setQData(data);
         if (data.topColor)
           color = `${data.topColor} linear-gradient(to bottom right, ${data.topColor} 0%, ${data.bottomColor} 100%)`;
-        setQData(data);
       } else {
         await postQuestion(qData);
       }
