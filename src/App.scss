@@ -190,11 +190,13 @@
     gap: 16px;
 
     .back {
+      padding-top: 15px;
       cursor: pointer;
       text-decoration: none;
       color: white;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 16px;
+      text-align: center;
       margin: 0;
       display: inline-block;
       // border-bottom: 2px solid white;
