@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
@@ -6,6 +6,7 @@ import axios from "axios";
 
 const Message = () => {
   const params = useParams();
+  const imgRef = useRef();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [text, setText] = useState();
@@ -125,7 +126,10 @@ const Message = () => {
             <form className="form" method="post">
               <div className="bubble">
                 <div className="header">
-                  <div className="pfp-container">
+                  <div
+                    className="pfp-container"
+                    style={{ backgroundImage: photo }}
+                  >
                     {photo && (
                       <img src={photo} alt="" onError={handleOnError} />
                     )}
