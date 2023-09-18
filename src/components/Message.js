@@ -161,10 +161,10 @@ const Message = () => {
           </div>
           {!focus && (
             <div className="bottom-container">
-              <div className="download-prompt">
+              {/* <div className="download-prompt">
                 👇 <span className="clickCount">225</span> people just tapped
                 the button👇
-              </div>
+              </div> */}
               <Link
                 className="button download-link pulse"
                 to="https://apps.apple.com/us/app/ngl-anonymous-q-a/id1596550932?ppid=543cb167-5bdc-448f-a202-e5506f5d2837"
@@ -172,14 +172,14 @@ const Message = () => {
               >
                 Get your own responses!
               </Link>
-              <div className="tos-privacy">
+              {/* <div className="tos-privacy">
                 <Link className="tos" to="/p/terms">
                   Terms
                 </Link>
                 <Link className="privacy" to="/p/privacy">
                   Privacy
                 </Link>
-              </div>
+              </div> */}
             </div>
           )}
         </>
