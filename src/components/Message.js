@@ -16,8 +16,6 @@ const Message = () => {
   const [location, setLocation] = useState("");
   const [qData, setQData] = useState({
     active: true,
-    bottomColor: "#FF8D10",
-    topColor: "#EC1187",
     hideBranding: false,
     questionType: 1,
     question: "Send me anonymous messages:",
