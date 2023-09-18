@@ -81,7 +81,7 @@ const Message = () => {
         doc(db, "questions", params.name, params.number, params.number)
       );
       const data = docSnap.data();
-      if (data) {
+      if (data && data.topColor) {
         color = `${data.topColor} linear-gradient(to bottom right, ${data.topColor} 0%, ${data.bottomColor} 100%)`;
         setQData(data);
       } else {
