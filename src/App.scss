@@ -126,6 +126,9 @@
           align-items: center;
         }
 
+        textarea::-webkit-input-placeholder {
+          color: #E0E1E4;
+        }
         textarea {
           border: none;
           outline: none;
@@ -194,7 +197,7 @@
       font-size: 18px;
       margin: 0;
       display: inline-block;
-      border-bottom: 2px solid white;
+      // border-bottom: 2px solid white;
     }
   }
 }
