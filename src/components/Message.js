@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
@@ -6,7 +6,6 @@ import axios from "axios";
 
 const Message = () => {
   const params = useParams();
-  const imgRef = useRef();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [text, setText] = useState();
@@ -18,7 +17,7 @@ const Message = () => {
   const [qData, setQData] = useState({
     active: true,
     hideBranding: false,
-    questionType: 1,
+    questionType: 0,
     question: "Send me anonymous messages:",
     epoch: params.number,
   });
@@ -136,7 +135,17 @@ const Message = () => {
                   </div>
                   <div className="user-container">
                     <div className="username">@{params.name}</div>
-                    <div className="prompt">{qData.question}</div>
+                    <div className="prompt">
+                      <div className="text">{qData.question}</div>
+                      {qData.questionType === 1 && (
+                        <Link to={qData.link} className="link">
+                          <div className="link-text">
+                            {qData.link ? qData.link : "(Default)"}
+                          </div>
+                          <div className="arrow-down" />
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="textarea-container">
@@ -174,7 +183,7 @@ const Message = () => {
                 // to="https://apps.apple.com/us/app/ngl-anonymous-q-a/id1596550932?ppid=543cb167-5bdc-448f-a202-e5506f5d2837"
                 target="_blank"
               >
-                Get your own responses!
+                Get your own answers!
               </Link>
               {/* <div className="tos-privacy">
                 <Link className="tos" to="/p/terms">

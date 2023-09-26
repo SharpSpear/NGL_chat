@@ -28,7 +28,7 @@ const Sent = () => {
             // to="https://apps.apple.com/us/app/ngl-anonymous-q-a/id1596550932?ppid=543cb167-5bdc-448f-a202-e5506f5d2837"
             target="_blank"
           >
-            Get your own responses!
+            Get your own answers!
           </Link>
           <div className="back">Turn your followers into honest answers 💡</div>
           {/* <Link className="back" to="javascript:history.back()">
