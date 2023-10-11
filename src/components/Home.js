@@ -6,7 +6,7 @@ const Home = () => {
     <div className="home">
       <img src={Logo} alt="logo" />
       <div className="button">
-        Get your honest answers -<span>&gt;</span>
+        Get your honest answers →
       </div>
     </div>
   );
