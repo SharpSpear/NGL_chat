@@ -5,6 +5,7 @@ import Sent from "./components/Sent";
 import Terms from "./components/Terms";
 import Privacy from "./components/Privacy";
 import { useEffect } from "react";
+import Home from "./components/Home";
 
 function App() {
   const location = useLocation();
@@ -16,6 +17,7 @@ function App() {
   }, []);
   return (
     <Routes>
+      <Route exact path="/" element={<Home />} />
       <Route path="/:name" element={<Message />} />
       <Route path="/:name/:number" element={<Message />} />
       <Route exact path="/p/sent" element={<Sent />} />
