@@ -30,7 +30,7 @@ const Sent = () => {
           >
             Get your own answers!
           </Link>
-          <div className="back">Turn your followers into honest answers 💡</div>
+          <div className="back">Get honest answers from your followers 💡</div>
           {/* <Link className="back" to="javascript:history.back()">
             Sent another message
           </Link> */}
