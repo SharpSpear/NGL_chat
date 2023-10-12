@@ -5,16 +5,16 @@
 
 html {
   background: #222;
-  background-repeat: no-repeat;
-  /* width: 100vw; */
-  height: 100vh;
+  width: 100vw;
+  height: 100%;
   /* height: -webkit-fill-available; */
+  overflow: hidden;
 }
 
-html {
+/* html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
-}
+} */
 
 body, #root {
   margin: 0;
