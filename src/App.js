@@ -10,7 +10,7 @@ import Home from "./components/Home";
 function App() {
   const location = useLocation();
   useEffect(() => {
-    if (location.pathname == "/p/sent") {
+    if (location.pathname == "/p/sent" || location.pathname == "/") {
       document.documentElement.style.background =
         "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
     }
