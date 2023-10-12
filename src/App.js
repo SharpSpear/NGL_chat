@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     if (location.pathname == "/p/sent" || location.pathname == "/") {
       document.documentElement.style.background =
-        "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
+        "linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
     }
   }, []);
   return (
