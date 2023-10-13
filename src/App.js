@@ -13,7 +13,7 @@ function App() {
     if (location.pathname == "/p/sent") {
       document.documentElement.style.background =
         "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
-      document.documentElement.style.height = "100vh"
+      // document.documentElement.style.height = "100vh"
     }
   }, []);
   return (
