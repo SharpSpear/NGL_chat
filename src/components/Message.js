@@ -36,7 +36,7 @@ const Message = () => {
 
   const postQuestion = async (data) => {
     await setDoc(
-      doc(db, "questions", params.name, data.epoch, data.epoch),
+      doc(db, "questions", params.name, "allQuestions", data.epoch),
       data
     );
   };
@@ -76,7 +76,7 @@ const Message = () => {
       "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
     try {
       const docSnap = await getDoc(
-        doc(db, "questions", params.name, params.number, params.number)
+        doc(db, "questions", params.name, "allQuestions", params.number)
       );
       const data = docSnap.data();
       if (data) {
