@@ -44,7 +44,7 @@ const Message = () => {
   const Submit = async (e) => {
     e.preventDefault();
     if (params.number) {
-      const time = (new Date().getTime() / 1000).toFixed(0);
+      const time = new Date().getTime();
       console.log("time", time);
       const data = {
         response: text,

@@ -6,7 +6,7 @@ const Home = () => {
     <div className="home">
       <img src={Logo} alt="logo" />
       <div className="button">
-        Get your honest answers&nbsp;&nbsp;➜
+        Get your fully anonymous, honest answers&nbsp;&nbsp;➜
       </div>
     </div>
   );
