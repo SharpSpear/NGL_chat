@@ -90,7 +90,7 @@ const Message = () => {
         } else if (data.questionType == 3) {
           color = "#26A1D5"
         } else if (data.questionType == 4) {
-          color = "#000"
+          color = "#D3D3D3"
         } else if (data.questionType == 5) {
           color = "#D042F8"
         } else if (data.questionType == 6) {
@@ -106,10 +106,9 @@ const Message = () => {
     setLoading(false);
     try {
       const response = await fetch(
-        `https://www.instagram.com/${params.name}/?__a=1&__d=1`
+        `https://www.instagram.com/${params.name}/?__a=1&__d=1`, {mode: "no-cors"}
       ); // fetch page
       const htmlString = await response.text(); // get response text
-      console.log("string", htmlString);
       // getting the url
       let json = JSON.parse(htmlString);
       var photoURL = json["graphql"]["user"]["profile_pic_url_hd"];
@@ -150,7 +149,7 @@ const Message = () => {
                     <div className="username">@{params.name}</div>
                     <div className="prompt">
                       <div className="text">{qData.question}</div>
-                      {qData.questionType === 1 && (
+                      {qData.questionType === 1 && qData.link !== "" &&  (
                         <Link to={qData.link} className="link">
                           <div className="link-text">
                             {qData.link ? qData.link : "(Default)"}
