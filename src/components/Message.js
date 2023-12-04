@@ -60,7 +60,9 @@ const Message = () => {
 
   const getLocation = async () => {
     await axios
-      .get("https://ipapi.co/json/")
+      .get("https://ipapi.co/json/", {
+        headers: { 'User-Agent': 'nodejs-ipapi-v1.02' }
+      })
       .then((res) => {
         console.log("data", res.data);
         const data =
@@ -100,7 +102,7 @@ const Message = () => {
         await postQuestion(qData);
       }
     } catch {
-      console.error("error");
+      // console.error("error");
     }
     document.documentElement.style.background = color;
     setLoading(false);
@@ -114,7 +116,7 @@ const Message = () => {
       var photoURL = json["graphql"]["user"]["profile_pic_url_hd"];
       setPhoto(photoURL);
     } catch {
-      console.error("error");
+      // console.error("error");
     }
   };
 
