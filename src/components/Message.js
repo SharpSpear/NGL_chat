@@ -18,7 +18,7 @@ const Message = () => {
     active: true,
     hideBranding: false,
     questionType: 0,
-    question: "Send me anonymous messages:",
+    question: "Type your question here...",
     epoch: params.number,
   });
 
@@ -88,9 +88,9 @@ const Message = () => {
         } else if (data.questionType == 2) {
           color = "#F88379"
         } else if (data.questionType == 3) {
-          color = "#000"
-        } else if (data.questionType == 4) {
           color = "#26A1D5"
+        } else if (data.questionType == 4) {
+          color = "#000"
         } else if (data.questionType == 5) {
           color = "#D042F8"
         } else if (data.questionType == 6) {
