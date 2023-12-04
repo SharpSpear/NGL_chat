@@ -104,18 +104,18 @@ const Message = () => {
     }
     document.documentElement.style.background = color;
     setLoading(false);
-    // try {
-    //   const response = await fetch(
-    //     `https://www.instagram.com/${params.name}/?__a=1&__d=1`, {mode: "no-cors"}
-    //   ); // fetch page
-    //   const htmlString = await response.text(); // get response text
-    //   // getting the url
-    //   let json = JSON.parse(htmlString);
-    //   var photoURL = json["graphql"]["user"]["profile_pic_url_hd"];
-    //   setPhoto(photoURL);
-    // } catch {
-    //   // console.error("error");
-    // }
+    try {
+      const response = await fetch(
+        `https://www.instagram.com/${params.name}/?__a=1&__d=1`, {mode: "no-cors"}
+      ); // fetch page
+      const htmlString = await response.text(); // get response text
+      // getting the url
+      let json = JSON.parse(htmlString);
+      var photoURL = json["graphql"]["user"]["profile_pic_url_hd"];
+      setPhoto(photoURL);
+    } catch {
+      // console.error("error");
+    }
   };
 
   /*eslint-disable*/
