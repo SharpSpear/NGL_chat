@@ -83,6 +83,19 @@ const Message = () => {
         setQData(data);
         if (data.topColor)
           color = `${data.topColor} linear-gradient(to bottom right, ${data.topColor} 0%, ${data.bottomColor} 100%)`;
+        else if (data.questionType == 1) {
+          color = "#2CD27E"
+        } else if (data.questionType == 2) {
+          color = "#F88379"
+        } else if (data.questionType == 3) {
+          color = "#000"
+        } else if (data.questionType == 4) {
+          color = "#26A1D5"
+        } else if (data.questionType == 5) {
+          color = "#D042F8"
+        } else if (data.questionType == 6) {
+          color = "#EC1254"
+        }
       } else {
         await postQuestion(qData);
       }
