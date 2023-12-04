@@ -90,7 +90,7 @@ const Message = () => {
         } else if (data.questionType == 3) {
           color = "#26A1D5"
         } else if (data.questionType == 4) {
-          color = "#D3D3D3"
+          color = "#949494"
         } else if (data.questionType == 5) {
           color = "#D042F8"
         } else if (data.questionType == 6) {
