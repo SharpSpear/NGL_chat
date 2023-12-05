@@ -54,6 +54,27 @@ const Message = () => {
       };
       await sendResponse(data);
     }
+    const options = {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Basic YTYzYWM4MDktYzI1ZC00ZDg0LWEzZGYtZWUyYzllNTExZDNm',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        "include_aliases": {
+          "external_id": [params.name]
+        },
+        "target_channel": "push",
+        "headings": {en: 'Honest', es: 'Honest'},
+        "subtitle": {en: params.questionType, es: 'Honest'},
+        "contents": {en: "You just got a new response! Tap to view", es: 'Honest'}
+      })
+    };
+    await fetch('https://onesignal.com/api/v1/notifications', options)
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
 
     navigate("/p/sent");
   };
