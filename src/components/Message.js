@@ -203,7 +203,7 @@ const Message = () => {
                           <div className="link-text">
                             {qData.link}
                           </div>
-                          <div className="arrow-down" />
+                          {/* <div className="arrow-down" /> */}
                         </Link>
                       )}
                     </div>
