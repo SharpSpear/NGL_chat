@@ -20,6 +20,7 @@ const Message = () => {
     questionType: 0,
     question: "Type your question here...",
     epoch: params.number,
+    responses: 0,
   });
 
   const sendResponse = async (data) => {
@@ -36,7 +37,7 @@ const Message = () => {
 
   const postQuestion = async (data) => {
     await setDoc(
-      doc(db, "questions", params.name, "allQuestions", data.epoch),
+      doc(db, "questions", params.name, "allQuestions", params.number),
       data
     );
   };
@@ -53,19 +54,28 @@ const Message = () => {
         ipAddressLocation: location,
       };
       await sendResponse(data);
+      const data1 = {
+        ...qData,
+        responses: qData.responses + 1,
+      }
+      setQData(qData)
+      await postQuestion(data1)
     }
     const options = {
       method: 'POST',
       headers: {
         accept: 'application/json',
         Authorization: 'Basic YTYzYWM4MDktYzI1ZC00ZDg0LWEzZGYtZWUyYzllNTExZDNm',
-        'content-type': 'application/json'
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         "include_aliases": {
           "external_id": [params.name]
         },
+        "app_id": "f79a94cc-b930-4394-a510-545c145da21a",
         "target_channel": "push",
+        "ios_badgeType": "Increase",
+        "ios_badgeCount": 1,
         "headings": {en: 'Honest', es: 'Honest'},
         "subtitle": {en: params.questionType, es: 'Honest'},
         "contents": {en: "You just got a new response! Tap to view", es: 'Honest'}
