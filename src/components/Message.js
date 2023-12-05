@@ -78,6 +78,7 @@ const Message = () => {
         "ios_badgeCount": 1,
         "headings": {en: 'Honest', es: 'Honest'},
         "subtitle": {en: params.questionType, es: 'Honest'},
+        "included_segments": ["Subscribed Users"],
         "contents": {en: "You just got a new response! Tap to view", es: 'Honest'}
       })
     };
