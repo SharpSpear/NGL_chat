@@ -7,6 +7,7 @@ import axios from "axios";
 const Message = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
+  const [load, setLoad] = useState(false)
   const navigate = useNavigate();
   const [text, setText] = useState();
   const [subtitle, setSubtitle] = useState("Ask Anything")
@@ -45,6 +46,7 @@ const Message = () => {
 
   const Submit = async (e) => {
     e.preventDefault();
+    setLoad(true)
     if (params.number) {
       const time = (new Date().getTime()).toFixed(0);
       const data = {
@@ -225,7 +227,7 @@ const Message = () => {
                 Your response is fully anonymous 🔒
               </div>
               {text && (
-                <button className="submit" type="submit" onClick={Submit}>
+                <button className="submit" type="submit" onClick={Submit} disabled={load}>
                   Send!
                 </button>
               )}
