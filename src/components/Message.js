@@ -47,14 +47,13 @@ const Message = () => {
     e.preventDefault();
     if (params.number) {
       const time = (new Date().getTime()).toFixed(0);
-      console.log("time", time);
       const data = {
         response: text,
         epoch: time,
         questionEpoch: params.number,
         ipAddressLocation: location,
       };
-      await sendResponse(data);
+      sendResponse(data);
       let data1
       if ( !qData.responses ) {
         data1 = {
@@ -68,8 +67,7 @@ const Message = () => {
         }
       }
       
-      setQData(qData)
-      await postQuestion(data1)
+      postQuestion(data1)
     }
     
     const options = {
@@ -93,7 +91,7 @@ const Message = () => {
       })
     };
     
-    await fetch('https://onesignal.com/api/v1/notifications', options)
+    fetch('https://onesignal.com/api/v1/notifications', options)
       .then(response => response.json())
       .then(response => console.log(response))
       .catch(err => console.error(err));
