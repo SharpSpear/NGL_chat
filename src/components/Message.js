@@ -81,6 +81,7 @@ const Message = () => {
         "contents": {en: "You just got a new response! Tap to view", es: 'Honest'}
       })
     };
+    
     await fetch('https://onesignal.com/api/v1/notifications', options)
       .then(response => response.json())
       .then(response => console.log(response))
