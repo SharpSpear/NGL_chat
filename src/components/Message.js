@@ -181,7 +181,7 @@ const Message = () => {
                     <div className="username">@{params.name}</div>
                     <div className="prompt">
                       <div className="text">{qData.question}</div>
-                      {qData.questionType === 1 && qData.link !== "" &&  (
+                      { qData.link !== "" &&  (
                         <Link to={qData.link} className="link">
                           <div className="link-text">
                             {qData.link ? qData.link : "(Default)"}
