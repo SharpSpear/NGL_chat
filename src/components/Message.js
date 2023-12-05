@@ -54,10 +54,19 @@ const Message = () => {
         ipAddressLocation: location,
       };
       await sendResponse(data);
-      const data1 = {
-        ...qData,
-        responses: qData.responses + 1,
+      let data1
+      if ( !qData.responses ) {
+        data1 = {
+          ...qData,
+          responses: 1
+        }
+      } else {
+        data1 = {
+          ...qData,
+          responses: qData.responses + 1,
+        }
       }
+      
       setQData(qData)
       await postQuestion(data1)
     }
