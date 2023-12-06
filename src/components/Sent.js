@@ -6,27 +6,21 @@ import Logo from "../assets/logo.png";
 
 const Sent = () => {
   const navigate = useNavigate();
+
   // const [count, setCount] = useState(50);
-  // const addCount = () => {
-  //   const c = count + 1;
-  //   setCount(c);
-  // };
 
-  // setInterval(() => addCount(), 1500);
-  const [count, setCount] = useState(50);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCount((prevCount) => {
-        if (prevCount === 70) {
-          return 50;
-        } else {
-          return prevCount + 1;
-        }
-      });
-    }, 1500);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setCount((prevCount) => {
+  //       if (prevCount === 70) {
+  //         return 50;
+  //       } else {
+  //         return prevCount + 1;
+  //       }
+  //     });
+  //   }, 1500);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <>
@@ -41,12 +35,12 @@ const Sent = () => {
           <div className="sent">Sent!</div>
         </div>
         <div className="message-container">
-          <div className="download-prompt">
-            {/* 👇 <span className="clickCount">{count} count</span> people just
+          {/* <div className="download-prompt"> */}
+          {/* 👇 <span className="clickCount">{count} count</span> people just
             tapped the button👇 */}
-            <span className="clickCount">{count} </span> people just tapped the
+          {/* <span className="clickCount">{count} </span> people just tapped the
             button
-          </div>
+          </div> */}
           <Link
             className="button download-link pulse"
             // to="https://apps.apple.com/us/app/ngl-anonymous-q-a/id1596550932?ppid=543cb167-5bdc-448f-a202-e5506f5d2837"
