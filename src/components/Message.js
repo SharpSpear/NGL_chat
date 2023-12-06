@@ -7,10 +7,10 @@ import axios from "axios";
 const Message = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
-  const [load, setLoad] = useState(false)
+  const [load, setLoad] = useState(false);
   const navigate = useNavigate();
   const [text, setText] = useState();
-  const [subtitle, setSubtitle] = useState("Ask Anything")
+  const [subtitle, setSubtitle] = useState("Ask Anything");
   const [focus, setFocus] = useState(false);
   const [photo, setPhoto] = useState(
     `https://firebasestorage.googleapis.com/v0/b/honest-c986c.appspot.com/o/profilePictures%2FprofPic-${params.name}.jpg?alt=media`
@@ -46,9 +46,9 @@ const Message = () => {
 
   const Submit = async (e) => {
     e.preventDefault();
-    setLoad(true)
+    setLoad(true);
     if (params.number) {
-      const time = (new Date().getTime()).toFixed(0);
+      const time = new Date().getTime().toFixed(0);
       const data = {
         response: text,
         epoch: time,
@@ -56,47 +56,50 @@ const Message = () => {
         ipAddressLocation: location,
       };
       sendResponse(data);
-      let data1
-      if ( !qData.responses ) {
+      let data1;
+      if (!qData.responses) {
         data1 = {
           ...qData,
-          responses: 1
-        }
+          responses: 1,
+        };
       } else {
         data1 = {
           ...qData,
           responses: qData.responses + 1,
-        }
+        };
       }
-      
-      postQuestion(data1)
+
+      postQuestion(data1);
     }
-    
+
     const options = {
-      method: 'POST',
+      method: "POST",
       headers: {
-        accept: 'application/json',
-        Authorization: 'Basic YTYzYWM4MDktYzI1ZC00ZDg0LWEzZGYtZWUyYzllNTExZDNm',
-        'Content-Type': 'application/json'
+        accept: "application/json",
+        Authorization: "Basic YTYzYWM4MDktYzI1ZC00ZDg0LWEzZGYtZWUyYzllNTExZDNm",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "include_aliases": {
-          "external_id": [params.name]
+        include_aliases: {
+          external_id: [params.name],
         },
-        "app_id": "f79a94cc-b930-4394-a510-545c145da21a",
-        "target_channel": "push",
-        "ios_badgeType": "Increase",
-        "ios_badgeCount": 1,
-        "headings": {en: 'Honest', es: 'Honest'},
-        "subtitle": {en: subtitle, es: subtitle},
-        "contents": {en: "You just got a new response! Tap to view", es: 'Honest'}
-      })
+        app_id: "f79a94cc-b930-4394-a510-545c145da21a",
+        target_channel: "push",
+        ios_badgeType: "Increase",
+        ios_badgeCount: 1,
+        headings: { en: "Honest", es: "Honest" },
+        subtitle: { en: subtitle, es: subtitle },
+        contents: {
+          en: "You just got a new response! Tap to view",
+          es: "Honest",
+        },
+      }),
     };
-    
-    fetch('https://onesignal.com/api/v1/notifications', options)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err));
+
+    fetch("https://onesignal.com/api/v1/notifications", options)
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
 
     navigate("/p/sent");
   };
@@ -127,23 +130,23 @@ const Message = () => {
         if (data.topColor)
           color = `${data.topColor} linear-gradient(to bottom right, ${data.topColor} 0%, ${data.bottomColor} 100%)`;
         else if (data.questionType == 1) {
-          color = "#2CD27E"
-          setSubtitle("Personal feedback")
+          color = "#2CD27E";
+          setSubtitle("Personal feedback");
         } else if (data.questionType == 2) {
-          color = "#F88379"
-          setSubtitle("This or That")
+          color = "#F88379";
+          setSubtitle("This or That");
         } else if (data.questionType == 3) {
-          color = "#26A1D5"
-          setSubtitle("Recommendations")
+          color = "#26A1D5";
+          setSubtitle("Recommendations");
         } else if (data.questionType == 4) {
-          color = "#949494"
-          setSubtitle("Business feedback")
+          color = "#949494";
+          setSubtitle("Business feedback");
         } else if (data.questionType == 5) {
-          color = "#D042F8"
-          setSubtitle("Just For Fun")
+          color = "#D042F8";
+          setSubtitle("Just For Fun");
         } else if (data.questionType == 6) {
-          color = "#EC1254"
-          setSubtitle("Relationships & Dating")
+          color = "#EC1254";
+          setSubtitle("Relationships & Dating");
         }
       } else {
         await postQuestion(qData);
@@ -155,7 +158,8 @@ const Message = () => {
     setLoading(false);
     try {
       const response = await fetch(
-        `https://www.instagram.com/${params.name}/?__a=1&__d=1`, {mode: "no-cors"}
+        `https://www.instagram.com/${params.name}/?__a=1&__d=1`,
+        { mode: "no-cors" }
       ); // fetch page
       const htmlString = await response.text(); // get response text
       // getting the url
@@ -178,6 +182,31 @@ const Message = () => {
     setPhoto("");
   };
 
+  // const [count, setCount] = useState(50);
+  // const addCount = () => {
+  //   const c = count + 1;
+  //   setCount(c);
+  // };
+
+  // setInterval(() => addCount(), 1500);
+  const [count, setCount] = useState(50);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((prevCount) => {
+        if (prevCount === 70) {
+          return 50;
+        } else {
+          return prevCount + 1;
+        }
+      });
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  // const [count, setCount] = useState(50);
+  // const addCount = () => {
+
   return (
     <>
       {!loading ? (
@@ -198,11 +227,9 @@ const Message = () => {
                     <div className="username">@{params.name}</div>
                     <div className="prompt">
                       <div className="text">{qData.question}</div>
-                      { qData.link &&  (
+                      {qData.link && (
                         <Link to={qData.link} className="link">
-                          <div className="link-text">
-                            {qData.link}
-                          </div>
+                          <div className="link-text">{qData.link}</div>
                           {/* <div className="arrow-down" /> */}
                         </Link>
                       )}
@@ -227,7 +254,12 @@ const Message = () => {
                 Your response is fully anonymous 🔒
               </div>
               {text && (
-                <button className="submit" type="submit" onClick={Submit} disabled={load}>
+                <button
+                  className="submit"
+                  type="submit"
+                  onClick={Submit}
+                  disabled={load}
+                >
                   Send!
                 </button>
               )}
@@ -239,6 +271,10 @@ const Message = () => {
                 👇 <span className="clickCount">225</span> people just tapped
                 the button👇
               </div> */}
+              <div className="download-prompt">
+                <span className="clickCount">{count} </span> people just tapped
+                the button
+              </div>
               <Link
                 className="button download-link pulse"
                 // to="https://apps.apple.com/us/app/ngl-anonymous-q-a/id1596550932?ppid=543cb167-5bdc-448f-a202-e5506f5d2837"
