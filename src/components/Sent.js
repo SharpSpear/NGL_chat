@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LeftArrow from "../assets/left.png";
 import CheckImage from "../assets/sent.png";
@@ -6,6 +6,14 @@ import Logo from "../assets/logo.png";
 
 const Sent = () => {
   const navigate = useNavigate();
+  const [count, setCount] = useState(50);
+  const addCount = () => {
+    const c = count + 1;
+    setCount(c);
+  };
+
+  setInterval(() => addCount(), 1500);
+
   return (
     <>
       <div className="container">
@@ -19,10 +27,10 @@ const Sent = () => {
           <div className="sent">Sent!</div>
         </div>
         <div className="message-container">
-          {/* <div className="download-prompt">
-            👇 <span className="clickCount">225</span> people just tapped the
-            button👇
-          </div> */}
+          <div className="download-prompt">
+            👇 <span className="clickCount">{count} count</span> people just
+            tapped the button👇
+          </div>
           <Link
             className="button download-link pulse"
             // to="https://apps.apple.com/us/app/ngl-anonymous-q-a/id1596550932?ppid=543cb167-5bdc-448f-a202-e5506f5d2837"
