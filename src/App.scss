@@ -442,6 +442,16 @@
   }
 }
 
+@media screen and (max-width: 600px){
+  .home {
+    .button {
+      width: 320px;
+      height: 75px;
+      text-align: center;
+    }
+  }
+}
+
 @font-face {
   font-family: 'Graphik';
   src: url('https://assets.website-files.com/62a6e19b906fa55f541799d7/62a6e8bd22998beaa9f05bc6_GraphikBoldItalic.otf') format('opentype');
