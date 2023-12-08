@@ -236,7 +236,6 @@ const Message = () => {
                   <textarea
                     placeholder="Reply anonymously here"
                     value={text}
-                    autoFocus
                     onChange={(e) => setText(e.target.value)}
                     onFocus={() => setFocus(true)}
                     onBlur={() => setFocus(false)}
