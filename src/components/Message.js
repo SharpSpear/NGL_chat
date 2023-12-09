@@ -246,7 +246,7 @@ const Message = () => {
                 </div>
               </div>
               <div className="anonymous-tooltip">
-                Your response is fully anonymous 🔒
+                Your response is 100% anonymous 🔒
               </div>
               {text && (
                 <button
