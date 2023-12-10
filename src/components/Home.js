@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="home">
       <img src={Logo} alt="logo" />
-      <div className="button">Get your 100% anonymous answers&nbsp;&nbsp;➜</div>
+      <div className="button">Get your answers&nbsp;&nbsp;➜</div>
     </div>
   );
 };
