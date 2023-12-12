@@ -9,13 +9,15 @@ import Home from "./components/Home";
 
 function App() {
   const location = useLocation();
+  /* eslint-disable */
   useEffect(() => {
-    if (location.pathname == "/p/sent") {
+    if (location.pathname === "/p/sent") {
       document.documentElement.style.background =
         "#EC1187 linear-gradient(to bottom right, #EC1187 0%, #FF8D10 100%)";
       // document.documentElement.style.height = "100vh"
     }
   }, []);
+  /* eslint-enable */
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />

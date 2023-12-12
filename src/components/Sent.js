@@ -1,11 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LeftArrow from "../assets/left.png";
 import CheckImage from "../assets/sent.png";
 import Logo from "../assets/logo.png";
+// import { db } from "../firebase";
+// import { getDocs } from "firebase/firestore";
 
 const Sent = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { name } = state;
+  // const [responses, setResponses] = useState([]);
 
   // const [count, setCount] = useState(50);
 
@@ -32,7 +37,7 @@ const Sent = () => {
         </div>
         <div className="check">
           <img src={CheckImage} alt="sent" data-xblocker="passed" />
-          <div className="sent">Sent!</div>
+          <div className="sent">Sent anonymously to {name}!</div>
         </div>
         <div className="message-container">
           {/* <div className="download-prompt"> */}
