@@ -21,7 +21,7 @@ const Message = () => {
     hideBranding: false,
     questionType: 0,
     question: "Type your question here...",
-    epoch: params.number,
+    epoch: Number(params.number),
     responses: 0,
   });
 
@@ -51,8 +51,8 @@ const Message = () => {
       const time = new Date().getTime().toFixed(0);
       const data = {
         response: text,
-        epoch: time,
-        questionEpoch: params.number,
+        epoch: Number(time),
+        questionEpoch: Number(params.number),
         ipAddressLocation: location,
       };
       sendResponse(data);
