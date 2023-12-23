@@ -30,8 +30,8 @@ const Message = () => {
       doc(db, "responses", params.name, data.questionEpoch, data.epoch),
       {
         response: data.response,
-        questionEpoch: data.questionEpoch,
-        epoch: data.epoch,
+        questionEpoch: Number(data.questionEpoch),
+        epoch: Number(data.epoch),
         ipAddressLocation: data.ipAddressLocation,
       }
     );
@@ -51,8 +51,8 @@ const Message = () => {
       const time = new Date().getTime().toFixed(0);
       const data = {
         response: text,
-        epoch: Number(time),
-        questionEpoch: Number(params.number),
+        epoch: time,
+        questionEpoch: params.number,
         ipAddressLocation: location,
       };
       sendResponse(data);
